@@ -1,0 +1,4 @@
+---
+# handlers file for wproles
+ - name: start apache2 srvice
+   service: name=apache2 state=restarted

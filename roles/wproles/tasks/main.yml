@@ -1,0 +1,17 @@
+---
+# tasks file for wproles
+ - name: installing PHP and zip
+   apt: name= "{{ item }}" state=present
+   with_items:
+     - php
+     - libapache2-mod-php
+     - php-mcrypt
+     - php-mysql
+     - unzip
+ - name: installing and config. mysql
+   include_tasks: database.yml
+ - name: installing and config. apache2
+   include_tasks: webserver.yml
+ - name: downloading and confg. wordpress
+   include_tasks: wordpresss.yml
+       

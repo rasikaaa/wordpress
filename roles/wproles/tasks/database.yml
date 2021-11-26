@@ -1,0 +1,14 @@
+---
+ - name: install mysql and pkg
+   apt: name= "{{ item }}" state=present
+   with_items: 
+     - mysql-server
+     - mysql-client
+ - name: my sql passswd
+   shell: mysqladmin -u root password rootpassword
+ - name: dwnld mysqlcmmnd
+   get_url:
+     url: https://gitlab.com/roybhaskar9/devops/raw/master/coding/chef/chefwordpress/files/default/mysqlcommands
+     dest: /tmp/mysqlcommands
+
+

@@ -1,0 +1,19 @@
+---
+ - name: Download WordPress
+   get_url: url=https://wordpress.org/latest.zip dest=/tmp/wordpress.zip
+  
+ 
+ - name: Unzip WordPress
+   unarchive: src=/tmp/wordpress.zip dest=/tmp copy=no creates=/tmp/wordpress/wp-settings.php
+  
+  
+ - name: Copy WordPress files into apache working dir /var/www/html/
+   command: cp -a /tmp/wordpress/. /var/www/html/ creates=/var/www/html/wp-settings.php
+  
+ - name: Copying the wordpress config.php using J2 template
+   get_url:
+     url: https://gitlab.com/roybhaskar9/devops/raw/master/coding/chef/chefwordpress/files/default/wp-config-sample.php 
+     dest: /var/www/html/wordpress/wp-config.php 
+     owner: www-data 
+     mode: 775
+ 
